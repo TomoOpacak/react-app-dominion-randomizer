@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/style.css"; // Import your CSS file here
+import "../css/style.css";
 
 const cardImages = Array.from(
   { length: 30 },
@@ -8,37 +8,80 @@ const cardImages = Array.from(
 
 function getRandomCards(cardArray, count) {
   const shuffled = [...cardArray].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+  return shuffled.slice(0, count).map((src, i) => ({
+    id: `${Date.now()}-${i}`, // Unique ID for key
+    src,
+  }));
 }
 
 export default function CardGame() {
-  const [selectedCards, setSelectedCards] = useState([]);
+  const [cards, setCards] = useState([]);
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // Load cards on mount and trigger initial flip
+  useEffect(() => {
+    const newCards = getRandomCards(cardImages, 10);
+    setCards(newCards);
+
+    // Trigger initial flip after slight delay
+    setTimeout(() => {
+      setIsFlipped(true);
+    }, 200);
+  }, []);
 
   const shuffleCards = () => {
-    const newCards = getRandomCards(cardImages, 10);
-    setSelectedCards(newCards);
-  };
+    setIsFlipped(false); // Flip back first
 
-  useEffect(() => {
-    shuffleCards();
-  }, []);
+    setTimeout(() => {
+      const newCards = getRandomCards(cardImages, 10);
+      setCards(newCards);
+
+      setTimeout(() => {
+        setIsFlipped(true); // Flip to front
+      }, 50);
+    }, 800); // Wait for back flip to finish
+  };
 
   return (
     <div className="card-game">
-      <h1 className="title">DOMINION</h1>
+      <h1 className="title">DOMINION - Nasumična igra</h1>
       <div className="card-grid">
-        {selectedCards.map((card, index) => (
-          <img
-            key={index}
-            src={card}
-            alt={`Card ${index + 1}`}
-            className="card-image"
-          />
+        {cards.map((card, index) => (
+          <div key={card.id} className="card">
+            <div
+              className={`card-inner ${isFlipped ? "flipped" : ""}`}
+              style={{ transitionDelay: `${index * 50}ms` }}
+            >
+              <div className="card-back">
+                <img
+                  src={`${process.env.PUBLIC_URL}/cards/back.webp`}
+                  alt="Card back"
+                  className="card-image"
+                />
+              </div>
+              <div className="card-front">
+                <img
+                  src={card.src}
+                  alt={`Card ${index + 1}`}
+                  className="card-image"
+                />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
+
       <button className="new-game-button" onClick={shuffleCards}>
         Nova Igra
       </button>
+
+      <footer>
+        <p>
+          This page is made for educational purposes and only for personal use.
+          All art provided from Dominion Strategy Wiki and Dominion.
+        </p>
+        <p>Translation made by Reattera</p>
+      </footer>
     </div>
   );
 }
