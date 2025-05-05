@@ -3,7 +3,10 @@ import "../css/style.css"; // Import your CSS file here
 
 const cardImages = Array.from(
   { length: 30 },
-  (_, i) => `/cards/card${i + 1}.png`
+  (_, i) =>
+    `https://github.com/TomoOpacak/react-app-dominion-randomizer/blob/main/public/cards/card${
+      i + 1
+    }.png?raw=true`
 );
 
 function getRandomCards(cardArray, count) {
