@@ -3,7 +3,7 @@ import "../css/style.css"; // Import your CSS file here
 
 const cardImages = Array.from(
   { length: 30 },
-  (_, i) => `${process.env.PUBLIC_URL}/cards/card${i + 1}.png`
+  (_, i) => `${process.env.PUBLIC_URL}/cards/card${i + 1}.webp`
 );
 
 function getRandomCards(cardArray, count) {
@@ -25,7 +25,7 @@ export default function CardGame() {
 
   return (
     <div className="card-game">
-      <h1 className="title">Card Game</h1>
+      <h1 className="title">DOMINION</h1>
       <div className="card-grid">
         {selectedCards.map((card, index) => (
           <img
@@ -37,7 +37,7 @@ export default function CardGame() {
         ))}
       </div>
       <button className="new-game-button" onClick={shuffleCards}>
-        New Game
+        Nova Igra
       </button>
     </div>
   );
