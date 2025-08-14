@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/style.css";
 
 const cardImages = Array.from(
-  { length: 30 },
+  { length: 35 },
   (_, i) => `${process.env.PUBLIC_URL}/cards/card${i + 1}.webp`
 );
 
@@ -77,10 +77,12 @@ export default function CardGame() {
 
       <footer>
         <p>
-          This page is made for educational purposes and only for personal use.
-          All art provided from Dominion Strategy Wiki and Dominion.
+          Ova stranica je napravljena u edukacijske svrhe i samo za osobnu
+          upotrebu. Sve ilustracije preuzete su s Dominion Strategy Wiki i
+          Dominiona.
         </p>
-        <p>Translation made by Reattera</p>
+        <br />
+        <p>Izradio Tomo Opačak</p>
       </footer>
     </div>
   );
