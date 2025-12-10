@@ -34,8 +34,8 @@ body {
   perspective: 1200px;
   transition: transform 0.3s ease;
 }
-.card:hover {
-  transform: scale(1.1);
+.card:active {
+  transform: scale(0.9);
 }
 
 .card-inner {
@@ -70,7 +70,26 @@ body {
   object-fit: cover;
   border-radius: 10px;
 }
+.zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+}
 
+.zoom-image {
+  width: 500px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
 .new-game-button {
   background-color: #007bff;
   color: white;

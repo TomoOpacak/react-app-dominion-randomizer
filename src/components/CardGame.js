@@ -17,34 +17,29 @@ function getRandomCards(cardArray, count) {
 export default function CardGame() {
   const [cards, setCards] = useState([]);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [zoomedCard, setZoomedCard] = useState(null);
 
-  // Load cards on mount and trigger initial flip
   useEffect(() => {
     const newCards = getRandomCards(cardImages, 10);
     setCards(newCards);
 
-    // Trigger initial flip after slight delay
-    setTimeout(() => {
-      setIsFlipped(true);
-    }, 200);
+    setTimeout(() => setIsFlipped(true), 200);
   }, []);
 
   const shuffleCards = () => {
-    setIsFlipped(false); // Flip back first
+    setIsFlipped(false);
 
     setTimeout(() => {
       const newCards = getRandomCards(cardImages, 10);
       setCards(newCards);
-
-      setTimeout(() => {
-        setIsFlipped(true); // Flip to front
-      }, 50);
-    }, 800); // Wait for back flip to finish
+      setTimeout(() => setIsFlipped(true), 50);
+    }, 800);
   };
 
   return (
     <div className="card-game">
       <h1 className="title">DOMINION - Nasumična igra</h1>
+
       <div className="card-grid">
         {cards.map((card, index) => (
           <div key={card.id} className="card">
@@ -59,17 +54,25 @@ export default function CardGame() {
                   className="card-image"
                 />
               </div>
+
               <div className="card-front">
                 <img
                   src={card.src}
                   alt={`Card ${index + 1}`}
                   className="card-image"
+                  onClick={() => setZoomedCard(card)}
                 />
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {zoomedCard && (
+        <div className="zoom-overlay" onClick={() => setZoomedCard(null)}>
+          <img src={zoomedCard.src} className="zoom-image" alt="zoom" />
+        </div>
+      )}
 
       <button className="new-game-button" onClick={shuffleCards}>
         Nova Igra
