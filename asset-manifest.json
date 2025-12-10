@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-app-dominion-randomizer/static/css/main.e864784f.css",
+    "main.css": "/react-app-dominion-randomizer/static/css/main.56a50d42.css",
     "main.js": "/react-app-dominion-randomizer/static/js/main.0faff9fa.js",
     "static/js/453.05bed52a.chunk.js": "/react-app-dominion-randomizer/static/js/453.05bed52a.chunk.js",
     "index.html": "/react-app-dominion-randomizer/index.html",
-    "main.e864784f.css.map": "/react-app-dominion-randomizer/static/css/main.e864784f.css.map",
+    "main.56a50d42.css.map": "/react-app-dominion-randomizer/static/css/main.56a50d42.css.map",
     "main.0faff9fa.js.map": "/react-app-dominion-randomizer/static/js/main.0faff9fa.js.map",
     "453.05bed52a.chunk.js.map": "/react-app-dominion-randomizer/static/js/453.05bed52a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e864784f.css",
+    "static/css/main.56a50d42.css",
     "static/js/main.0faff9fa.js"
   ]
 }
